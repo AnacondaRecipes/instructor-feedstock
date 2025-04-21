@@ -13,8 +13,10 @@ build:
   entry_points:
     - instructor = instructor.cli.cli:app
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true  # [py<39]
+  skip: true  # [py<310]
   number: 0
+# Though it is avaible upstream for 3.9, we’ll limit the package to Python 3.10 and above,
+# since the newer typing syntax breaks all 3.9 builds.
 
 requirements:
   host:
@@ -63,6 +65,14 @@ about:
   summary: structured outputs for llm
   license: MIT
   license_file: LICENSE
+  description : |
+    Instructor is a Python library that provides a simple and efficient way to
+    create structured outputs for large language models (LLMs). It allows you to
+    define the structure of the output you want from the LLM, making it easier to
+    work with the generated text. The library is designed to be easy to use and
+    integrate into your existing projects.
+  dev_url: https://github.com/jxnl/instructor
+  doc_url: https://github.com/jxnl/instructor
 
 extra:
   recipe-maintainers:
