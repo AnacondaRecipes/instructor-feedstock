@@ -65,6 +65,7 @@ about:
   summary: structured outputs for llm
   license: MIT
   license_file: LICENSE
+  license_family: MIT
   description : |
     Instructor is a Python library that provides a simple and efficient way to
     create structured outputs for large language models (LLMs). It allows you to
