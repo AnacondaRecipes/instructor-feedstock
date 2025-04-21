@@ -15,9 +15,10 @@ build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [py<310]
   number: 0
-# Though it is avaible upstream for 3.9, we’ll limit the package to Python 3.10 and above,
+# Though it is available upstream for 3.9, we’ll limit the package to Python 3.10 and above,
 # since the newer typing syntax breaks all 3.9 builds.
 
+# We'll keep setuptools unpinned—upstream caps <72.10; needed for Django 5.2 on Py 3.13
 requirements:
   host:
     - python
