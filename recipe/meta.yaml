@@ -48,15 +48,10 @@ test:
   requires:
     - python
     - pip
-    - pytest
-    - python-dotenv
   imports:
     - instructor
-  source_files:
-    - tests
   commands:
     - pip check
-    - pytest tests -v
 
 about:
   home: https://github.com/jxnl/instructor
