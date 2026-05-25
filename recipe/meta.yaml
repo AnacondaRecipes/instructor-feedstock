@@ -91,7 +91,7 @@ test:
     - pip check
 
 about:
-  home: https://github.com/jxnl/instructor
+  home: https://github.com/567-labs/instructor
   summary: structured outputs for llm
   license: MIT
   license_file: LICENSE
@@ -102,8 +102,8 @@ about:
     define the structure of the output you want from the LLM, making it easier to
     work with the generated text. The library is designed to be easy to use and
     integrate into your existing projects.
-  dev_url: https://github.com/jxnl/instructor
-  doc_url: https://github.com/jxnl/instructor
+  dev_url: https://github.com/567-labs/instructor
+  doc_url: https://github.com/567-labs/instructor
 
 extra:
   recipe-maintainers:
