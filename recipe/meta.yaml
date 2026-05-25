@@ -9,13 +9,14 @@ source:
   url: https://github.com/567-labs/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 9a9e8168f574bc589f455b992a59d50a06884d96be016e09e972b56387f8607a
 build:
-  entry_points:
-    - instructor = instructor.cli.cli:app
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  # Though it is available upstream for 3.9, we’ll limit the package to Python 3.10 and above,
+  # since the newer typing syntax breaks all 3.9 builds.
   skip: true  # [py<310]
   number: 0
-# Though it is available upstream for 3.9, we’ll limit the package to Python 3.10 and above,
-# since the newer typing syntax breaks all 3.9 builds.
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  entry_points:
+    - instructor = instructor.cli.cli:app
+
 requirements:
   host:
     - python
