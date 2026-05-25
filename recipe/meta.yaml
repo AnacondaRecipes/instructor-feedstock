@@ -91,7 +91,7 @@ test:
     - pip check
 
 about:
-  home: https://github.com/567-labs/instructor
+  home: https://python.useinstructor.com
   summary: structured outputs for llm
   license: MIT
   license_file: LICENSE
