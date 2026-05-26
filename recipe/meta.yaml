@@ -89,6 +89,7 @@ test:
     - instructor
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
 
 about:
   home: https://python.useinstructor.com
