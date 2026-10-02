@@ -1,13 +1,13 @@
 {% set name = "instructor" %}
-{% set version = "1.15.1" %}
+{% set version = "1.17.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://github.com/567-labs/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: dc8b98d076dd0c922094c2b25777dc2b0a36b4f777e5ad06f22035a859187198
+  sha256: acd8a24581d301d37368c8b10034960d2382a007d7507754e7d84a8f5f1639f7
 build:
   # Though it is available upstream for 3.9, we’ll limit the package to Python 3.10 and above,
   # since the newer typing syntax breaks all 3.9 builds.
@@ -25,21 +25,28 @@ requirements:
     - pip
   run:
     - python
-    - openai >=2.0.0,<3.0.0
+    - openai >=2.0.0,<4.0.0
     - pydantic >=2.8.0,<3.0.0
+    - eval-type-backport >=0.2.2  # [py>=310]
     - docstring_parser >=0.16,<1.0
     - typer >=0.9.0,<1.0.0
     - rich >=13.7.0,<15.0.0
-    - aiohttp >=3.9.1,<4.0.0
+    - aiohttp >=3.9.1,<3.14.0  # [py<310]
+    - aiohttp >=3.14.3,<4.0.0  # [py>=310]
     - tenacity >=8.2.3,<10.0.0
     - pydantic-core >=2.18.0,<3.0.0
-    - jiter >=0.6.1,<0.14
+    - jiter >=0.6.1,<0.15
     - jinja2 >=3.1.4,<4.0.0
-    - requests >=2.32.3,<3.0.0
+    - requests >=2.32.3,<2.33.0  # [py<310]
+    - requests >=2.33.0,<3.0.0  # [py>=310]
+    - urllib3 >=2.7.0,<3.0.0  # [py>=310]
+    - idna >=3.15
+    - click >=8.3.3  # [py>=310]
+    - regex >=2023.0.0,<2027.0.0
 
   run_constrained:
     # anthropic
-    - anthropic ==0.88.0
+    - anthropic ==0.93.0
     - xmltodict >=0.13,<1.1
     # groq
     - groq >=0.4.2,<1.1.0
@@ -55,16 +62,16 @@ requirements:
     # writer
     - writer-sdk >=2.2.0,<3.0.0
     # bedrock
-    - boto3 >=1.34.0,<2.0.0
+    - boto3 >=1.42.42,<2.0.0
     # mistral
-    - mistralai >=1.5.1,<2.0.0
+    - mistralai >=1.5.1,<3.0.0
     # perplexity
     # - openai already pinned in run
     # google-genai
     - google-genai >=1.5.0
     # - jsonref, already pinned for vertexai
     # litellm
-    - litellm >=1.35.31,<=1.83.0
+    - litellm >=1.35.31,<=1.83.7
     # xai
     - xai-sdk >=0.2.0  # [py>=310]
     # phonenumbers
@@ -91,6 +98,8 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    # Need to setup OPENAI_API_KEY with credentials
+    # - instructor --version
 
 about:
   home: https://python.useinstructor.com
